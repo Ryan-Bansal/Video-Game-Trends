@@ -9,7 +9,7 @@ body {
 
 /* Navbar container */
 .navbar {
-  background-color: #357F7F; /* muted teal */
+  background-color: #EEE6D8; /* muted teal */
   display: flex;
   padding: 0.5rem 1rem;
   gap: 1rem;
@@ -17,7 +17,7 @@ body {
 
 /* Inactive tabs */
 .navbar .tab {
-  background-color: #A9D6D6; /* light teal */
+  background-color: #EEE6D8; /* light teal */
   color: black;
   padding: 0.5rem 1rem;
   border-radius: 5px;
