@@ -1,0 +1,21 @@
+project:
+  type: website
+
+website:
+  title: "Video Game Trends: 2000-2010"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+
+
+

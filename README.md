@@ -1,1 +1,3 @@
-# Videogame-Sales
+# Video Game Sales
+
+This project explores global video game sales from 2000 to 2010, analyzing trends across platforms, genres, and publishers. Using a dataset from [Kaggle](https://www.kaggle.com/datasets/gregorut/videogamesales), I visualized how the gaming industry evolved over the decade, highlighting which consoles dominated, what genres topped the charts, and which publishers released the most successful titles. The Quarto website presents interactive visualizations and key takeaways from the analysis. [You can explore the full project here](https://ryan-bansal.github.io/Videogame-Sales/about.html)
