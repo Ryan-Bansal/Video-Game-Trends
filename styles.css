@@ -1,1 +1,40 @@
-/* css styles */
+/* Page background */
+body {
+  background-color: #FFF8E7; /* soft cream */
+  color: black;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar container */
+.navbar {
+  background-color: #357F7F; /* muted teal */
+  display: flex;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+
+/* Inactive tabs */
+.navbar .tab {
+  background-color: #A9D6D6; /* light teal */
+  color: black;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Active tab */
+.navbar .active {
+  background-color: #FF6B6B; /* bright coral */
+  color: black;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+/* Tab hover */
+.navbar .tab:hover {
+  background-color: #FF8787; /* medium coral */
+  color: black;
+}

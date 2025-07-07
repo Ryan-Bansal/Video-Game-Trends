@@ -11,13 +11,15 @@ execute:
 <br>
 Video game popularity and sales changed dramatically between 2000 and 2010. I gathered data from a Kaggle dataset containing global sales information on thousands of video games released during that decade. After cleaning and filtering the data, I focused on top-selling titles and major platforms across different regions. 
 
-The highest-selling games during this time were predominantly released on Nintendo’s DS and Wii, showcasing their strong market dominance. Genres like action and sports consistently led global sales, shaping the gaming industry’s growth. 
 
-To better understand the worldwide impact, this project also includes an interactive map showing sales across different continents, offering insight into how regional preferences and market sizes varied throughout the decade.
+
+
+
 
 ```{r setup}
 library(tidyverse)
 library(plotly)
+library(ggplot2)
 
 vgsales <- read_csv("vgsales.csv")
 
@@ -28,6 +30,8 @@ top10_games <- vgsales %>%
 
 
 ```
+
+
 
 
 
@@ -53,6 +57,49 @@ p <- ggplot(top10_games, aes(
 ggplotly(p, tooltip = "text")
 
 ```
+<br><br>
 
+The highest-selling games during this time were predominantly released on Nintendo’s DS and Wii, showcasing their strong market dominance. Genres like action and sports consistently led global sales, shaping the gaming industry’s growth. 
+```{r}
+library(tidyverse)
+library(plotly)
 
+# Assuming vgsales and top10_games are already loaded:
+top10_games <- vgsales %>%
+  filter(Year >= 2000, Year <= 2010) %>%
+  arrange(desc(Global_Sales)) %>%
+  slice_head(n = 10)
 
+# Summarize sales by region
+continent_sales <- top10_games %>%
+  summarise(
+    North_America = sum(NA_Sales, na.rm = TRUE),
+    Europe = sum(EU_Sales, na.rm = TRUE),
+    Japan = sum(JP_Sales, na.rm = TRUE),
+    Other = sum(Other_Sales, na.rm = TRUE)
+  ) %>%
+  pivot_longer(cols = everything(), names_to = "Region", values_to = "Sales")
+
+# Interactive pie chart with centered title and top margin
+plot_ly(
+  data = continent_sales,
+  labels = ~Region,
+  values = ~Sales,
+  type = "pie",
+  textinfo = "label+percent",
+  hoverinfo = "text",
+  text = ~paste("Region:", Region, "<br>Sales:", round(Sales, 2), "million"),
+  marker = list(colors = c("red", "green", "blue", "orange"))
+) %>%
+  layout(
+    title = list(
+      text = "Top 10 Games Sales by Region (2000–2010)",
+      x = 0.43,
+      xanchor = "center",
+      font = list(size = 18)
+    ),
+    margin = list(t = 80)  # Adjust top margin for spacing
+  )
+
+```
+To better understand the worldwide impact, this project includes an interactive pie chart showing the regional distribution of video game sales, offering insight into how different markets contributed to overall sales throughout the decade.
