@@ -9,7 +9,7 @@ execute:
 
 <h2 style="text-align: center;">Project Summary</h2>
 <br>
-Video game popularity and sales changed dramatically between 2000 and 2010. I gathered data from a Kaggle dataset containing global sales information on thousands of video games released during that decade. After cleaning and filtering the data, I focused on top-selling titles and major platforms across different regions. 
+Video game popularity and sales changed dramatically between 2000 and 2010. I gathered data from a Kaggle dataset containing global sales information on thousands of video games released during that decade. After cleaning and filtering the data, I focused on top-selling titles and major platforms across different regions. Through visualizations like bar charts and pie charts, I was able to explore which consoles dominated, how regional preferences differed, and which genres led global trends. Nintendo’s DS and Wii platforms stood out as major contributors to overall sales, particularly in North America and Japan. This analysis helped uncover not only which games were most successful, but also how market dynamics and consumer behavior varied around the world.
 
 
 
@@ -20,6 +20,7 @@ Video game popularity and sales changed dramatically between 2000 and 2010. I ga
 library(tidyverse)
 library(plotly)
 library(ggplot2)
+library(webshot2)
 
 vgsales <- read_csv("vgsales.csv")
 
@@ -36,8 +37,18 @@ top10_games <- vgsales %>%
 
 
 ```{r}
+library(tidyverse)
+library(plotly)
+
+# Load and filter top 10 games
+top10_games <- vgsales %>%
+  filter(Year >= 2000, Year <= 2010) %>%
+  arrange(desc(Global_Sales)) %>%
+  slice_head(n = 10)
+
+# Create the bar chart with Plotly
 p <- ggplot(top10_games, aes(
-  x = Name,
+  x = reorder(Name, Global_Sales),
   y = Global_Sales,
   fill = Platform,
   text = paste0("Year: ", Year, "<br>",
@@ -47,29 +58,30 @@ p <- ggplot(top10_games, aes(
   geom_col() +
   coord_flip() +
   labs(
-    title = "Top 10 Best-Selling Video Games (2000-2010)",
+    title = "Top 10 Best-Selling Video Games (2000–2010)",
     x = "Video Game",
     y = "Global Sales (Millions)",
     fill = "Platform"
   ) +
   theme_minimal()
 
-ggplotly(p, tooltip = "text")
+# Convert to interactive Plotly chart with transparent background
+ggplotly(p, tooltip = "text") %>%
+  layout(
+    title = list(
+      text = "Top 10 Best-Selling Video Games (2000–2010)",
+      x = 0.37,
+      xanchor = "center"
+    ),
+    paper_bgcolor = 'rgba(0,0,0,0)',  # full background transparent
+    plot_bgcolor = 'rgba(0,0,0,0)'    # plot panel background transparent
+  )
 
 ```
 <br><br>
 
 The highest-selling games during this time were predominantly released on Nintendo’s DS and Wii, showcasing their strong market dominance. Genres like action and sports consistently led global sales, shaping the gaming industry’s growth. 
 ```{r}
-library(tidyverse)
-library(plotly)
-
-# Assuming vgsales and top10_games are already loaded:
-top10_games <- vgsales %>%
-  filter(Year >= 2000, Year <= 2010) %>%
-  arrange(desc(Global_Sales)) %>%
-  slice_head(n = 10)
-
 # Summarize sales by region
 continent_sales <- top10_games %>%
   summarise(
@@ -80,7 +92,7 @@ continent_sales <- top10_games %>%
   ) %>%
   pivot_longer(cols = everything(), names_to = "Region", values_to = "Sales")
 
-# Interactive pie chart with centered title and top margin
+# Create interactive pie chart
 plot_ly(
   data = continent_sales,
   labels = ~Region,
@@ -93,13 +105,14 @@ plot_ly(
 ) %>%
   layout(
     title = list(
-      text = "Top 10 Games Sales by Region (2000–2010)",
-      x = 0.43,
+      text = "Top 10 Game Sales by Region (2000–2010)",
+      x = 0.44,
       xanchor = "center",
       font = list(size = 18)
     ),
-    margin = list(t = 80)  # Adjust top margin for spacing
+    margin = list(t = 80),
+    paper_bgcolor = 'rgba(0,0,0,0)',  # Transparent background
+    plot_bgcolor = 'rgba(0,0,0,0)'    # Transparent plot panel
   )
-
 ```
 To better understand the worldwide impact, this project includes an interactive pie chart showing the regional distribution of video game sales, offering insight into how different markets contributed to overall sales throughout the decade.
