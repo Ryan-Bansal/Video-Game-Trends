@@ -9,7 +9,7 @@ body {
 
 /* Navbar container */
 .navbar {
-  background-color: #EEE6D8; /* muted teal */
+  background-color: #EEE6D8; /* light tan */
   display: flex;
   padding: 0.5rem 1rem;
   gap: 1rem;
@@ -17,7 +17,7 @@ body {
 
 /* Inactive tabs */
 .navbar .tab {
-  background-color: #EEE6D8; /* light teal */
+  background-color: #EEE6D8; /* match navbar */
   color: black;
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -27,14 +27,14 @@ body {
 
 /* Active tab */
 .navbar .active {
-  background-color: #FF6B6B; /* bright coral */
-  color: black;
+  background-color: #D2B48C; /* tan */
+  color: #2B2B2B;             /* dark gray text */
   font-weight: bold;
   border-radius: 5px;
 }
 
 /* Tab hover */
 .navbar .tab:hover {
-  background-color: #FF8787; /* medium coral */
-  color: black;
+  background-color: #E6CBA8; /* lighter tan */
+  color: #2B2B2B;
 }

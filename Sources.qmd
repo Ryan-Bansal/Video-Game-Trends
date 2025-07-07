@@ -3,5 +3,5 @@ title: "Sources"
 format: html
 ---
 
-- [Video Game Sales Dataset (Kaggle)](https://www.kaggle.com/gregorut/videogamesales)  
+- [Video Game Sales Dataset (Kaggle)](https://ryan-bansal.github.io/Video-Game-Trends/)  
   This dataset provides comprehensive video game sales data used for analyzing regional sales trends from 2000 to 2010.
