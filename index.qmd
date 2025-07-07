@@ -116,5 +116,5 @@ plot_ly(
     plot_bgcolor = 'rgba(0,0,0,0)'    # Transparent plot panel
   )
 ```
-To highlight the global impact, this project features an interactive pie chart illustrating the regional distribution of the top 10 video game sales, revealing how various markets contributed to total sales throughout the decade.
+To highlight the global impact, this project features an interactive pie chart showing the regional distribution of the top 10 video game sales, revealing how various markets contributed to total sales throughout the decade.
 
