@@ -1,7 +1,58 @@
 ---
 title: "Video Game Trends: 2000-2010"
+author: "Ryan"
+execute:
+    echo: FALSE
+    message: FALSE
+    warning: FALSE
 ---
 
-This is a Quarto website.
+<h2 style="text-align: center;">Project Summary</h2>
+<br>
+Video game popularity and sales changed dramatically between 2000 and 2010. I gathered data from a Kaggle dataset containing global sales information on thousands of video games released during that decade. After cleaning and filtering the data, I focused on top-selling titles and major platforms across different regions. 
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+The highest-selling games during this time were predominantly released on Nintendo’s DS and Wii, showcasing their strong market dominance. Genres like action and sports consistently led global sales, shaping the gaming industry’s growth. 
+
+To better understand the worldwide impact, this project also includes an interactive map showing sales across different continents, offering insight into how regional preferences and market sizes varied throughout the decade.
+
+```{r setup}
+library(tidyverse)
+library(plotly)
+
+vgsales <- read_csv("vgsales.csv")
+
+top10_games <- vgsales %>%
+  filter(Year >= 2000, Year <= 2010) %>%  # keep only games from 2000-2010
+  arrange(desc(Global_Sales)) %>%          # sort by Global_Sales descending
+  slice_head(n = 10)                       # pick top 10 rows
+
+
+```
+
+
+
+```{r}
+p <- ggplot(top10_games, aes(
+  x = Name,
+  y = Global_Sales,
+  fill = Platform,
+  text = paste0("Year: ", Year, "<br>",
+                "Global Sales: ", Global_Sales, " million<br>",
+                "Platform: ", Platform)
+)) +
+  geom_col() +
+  coord_flip() +
+  labs(
+    title = "Top 10 Best-Selling Video Games (2000-2010)",
+    x = "Video Game",
+    y = "Global Sales (Millions)",
+    fill = "Platform"
+  ) +
+  theme_minimal()
+
+ggplotly(p, tooltip = "text")
+
+```
+
+
+

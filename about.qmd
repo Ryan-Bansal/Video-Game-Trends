@@ -1,5 +1,9 @@
 ---
-title: "About"
+title: "About Me"
 ---
 
-About this site
+I am Ryan, a data enthusiast passionate about video games and data science. You can find my work on [GitHub](https://github.com/Ryan-Bansal) or contact me via email at [ryanbansal04@gmail.com](mailto:ryanbansal04@gmail.com).
+
+This project explores video game sales trends from 2000 to 2010 and is available on [GitHub](https://github.com/Ryan-Bansal/Video-Game-Trends).
+
+This project was created as a part of [Kane’s Data Science Bootcamp](https://bootcamp.davidkane.info/).
