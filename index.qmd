@@ -1,6 +1,5 @@
 ---
 title: "Video Game Trends: 2000-2010"
-author: "Ryan"
 execute:
     echo: FALSE
     message: FALSE
