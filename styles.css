@@ -9,7 +9,9 @@ body {
 
 /* Navbar container */
 .navbar {
-  background-color: #EEE6D8; /* light tan */
+  background-color: rgba(177, 129, 45, 0.38) 
+
+; /* light tan */
   display: flex;
   padding: 0.5rem 1rem;
   gap: 1rem;
@@ -37,4 +39,20 @@ body {
 .navbar .tab:hover {
   background-color: #E6CBA8; /* lighter tan */
   color: #2B2B2B;
+}
+
+/* Define the fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Start completely transparent */
+    }
+    to {
+        opacity: 1; /* End fully opaque */
+    }
+}
+
+/* Apply the animation to the body element */
+body {
+    opacity: 0; /* Ensures the body starts hidden before the animation begins */
+    animation: fadeIn 1.5s ease-out forwards; /* Name, Duration, Timing Function, Fill Mode */
 }
